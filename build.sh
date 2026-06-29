@@ -4,6 +4,7 @@ set -e
 # Load .env configuration
 DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$DIR/.env"
+DEV_UID="${DEV_UID:-$(id -u)}"    # use .env DEV_UID or default to host user's UID
 
 # Generate Dockerfile
 # \${VAR} — expanded at build time (from .env), Dockerfile has no runtime variables
@@ -24,7 +25,14 @@ ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
 
 # Create dev user and pre-create /nix directory, ensure dev user has write permission after volume mount
-RUN useradd -m -s /bin/bash ${DEV_USER} && \
+# Note: Docker volumes store file ownership by UID number, not username.
+#   If this auto-assigned UID (e.g., 1000) matches a host user's UID (e.g., hostuser:1000),
+#   that host user can directly read/write the volume files under /var/lib/docker/volumes/,
+#   even though the files belong to the container's dev user conceptually.
+# DEV_UID is set from .env or defaults to the host user's UID via $(id -u).
+# The -u flag explicitly sets the container UID to match the host, ensuring
+# Docker volume files are directly accessible on the host without root.
+RUN useradd -m -s /bin/bash -u ${DEV_UID} ${DEV_USER} && \
     mkdir -m 0755 ${NIX_STORE_DIR} && \
     chown ${DEV_USER}:${DEV_USER} ${NIX_STORE_DIR}
 

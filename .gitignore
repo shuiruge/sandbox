@@ -1,3 +1,5 @@
 .env
 Dockerfile
 init.sh
+workspace/.data
+workspace/.config
