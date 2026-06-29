@@ -5,10 +5,10 @@ set -e
 DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$DIR/.env"
 
-# Host workspace directory, mounted to /home/$DEV_USER/workspace inside container
-mkdir -p "$DIR/$WORKSPACE_DIR"
+# Host directories mounted into container
+mkdir -p "$DIR/$WORKSPACE_DIR" "$DIR/$NIX_DIR_HOST"
 
 docker run -it --rm \
-  -v "$NIX_STORE_VOLUME:$NIX_STORE_DIR" \
+  -v "$DIR/$NIX_DIR_HOST:$NIX_DIR" \
   -v "$DIR/$WORKSPACE_DIR:/home/$DEV_USER/workspace" \
   "$IMAGE_NAME"

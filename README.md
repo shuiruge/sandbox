@@ -1,6 +1,6 @@
 # Sandbox
 
-Build a Docker image with Nix (Flake) installed, with named volume for Nix store. 
+Build a Docker image with Nix (Flake) installed, with Nix store persisted.
 
 ## Motivation
 
@@ -8,7 +8,7 @@ At first, I needed an isolated environment in which I can run agents such as Ope
 
 A solution is using [Nix](https://nixos.org/). It is a modern (and magic) package manager that can install packages without root permission, and even build up your development environment in one go. It then inspired me to consider a broader task. What I really need is a sandbox with Nix installed. And here it is.
 
-## Build, Run, and Clean
+## Howto
 
 ### Build
 
@@ -43,17 +43,7 @@ To run the Docker image, just execute `run.sh`, as
 sh run.sh
 ```
 
-It mounts the named volume that contains Nix to your Docker image. Also mounted is your workspace folder.
-
-### Clean
-
-If there is something wrong and you have to re-do the process, then you may want to clean up the environment before re-doing:
-
-```sh
-sh clean.sh
-```
-
-This will delete the named volume which stores the Nix configurations and binaries. Your workspace folder will be kept invariant.
+It mounts a folder that contains Nix (together with its store and profile) to your Docker image. Also mounted is your workspace folder.
 
 ## License
 
