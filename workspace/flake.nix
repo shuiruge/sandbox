@@ -22,6 +22,13 @@
           uv
           opencode
         ];
+
+        shellHook = ''
+          mkdir -p "$PWD/.config" "$PWD/.data"
+          export OPENCODE_CONFIG_DIR="$PWD/.config"
+          # Redirect opencode data dir to project-local .data/ (symlink)
+          ln -sfn "$PWD/.data" "$HOME/.local/share/opencode"
+        '';
       };
     };
 }
