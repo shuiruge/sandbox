@@ -2,5 +2,4 @@
 Dockerfile
 init.sh
 .nix*
-workspace/.data
-workspace/.config
+workspace
