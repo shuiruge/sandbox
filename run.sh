@@ -9,6 +9,7 @@ source "$DIR/.env"
 mkdir -p "$WORKSPACE_DIR" "$NIX_DIR_HOST"
 
 # Write flake.nix and flake.lock
+# You can change this part of code for your purpose.
 cat << FLAKE_NIX_EOF > "$WORKSPACE_DIR/flake.nix"
 {
   description = "opencode environment";
@@ -75,12 +76,13 @@ cat << FLAKE_LOCK_EOF > "$WORKSPACE_DIR/flake.lock"
   "version": 7
 }
 FLAKE_LOCK_EOF
+
+# Write a README
 cat << README_EOF > "$WORKSPACE_DIR/README"
 Run "nix develop" in terminal to build the OpenCode environment
 using Flake (an modern feature of Nix). In the first time
 of building, it will download and compile so many things.
-Be patient, ladies and gentlemen. Then, try "opencode" in
-terminal to execute OpenCode.
+Be patient, ladies and gentlemen.
 
 Have fun :)
 README_EOF
