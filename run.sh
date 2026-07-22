@@ -91,4 +91,7 @@ README_EOF
 docker run -it --rm \
   -v "$NIX_DIR_HOST:$NIX_DIR" \
   -v "$WORKSPACE_DIR:/home/$DEV_USER/workspace" \
-  "$IMAGE_NAME"
+  -w "/home/$DEV_USER/workspace" \
+  -p "$PORT:$PORT" \
+  "$IMAGE_NAME" \
+  nix develop
