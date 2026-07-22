@@ -8,7 +8,7 @@ source "$DIR/.env"
 # Host directories mounted into container
 mkdir -p "$WORKSPACE_DIR" "$NIX_DIR_HOST"
 
-
+# Write script that configurates opencode
 cat << INIT_EOF > "$WORKSPACE_DIR/init.sh"
 # set opencode config directory
 mkdir -p "\$PWD/.config"
