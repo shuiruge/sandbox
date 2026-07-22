@@ -8,11 +8,11 @@ source "$DIR/.env"
 # Host directories mounted into container
 mkdir -p "$WORKSPACE_DIR" "$NIX_DIR_HOST"
 
-# Write flake.nix and flake.lock
-# You can change this part of code for your purpose.
+# Write flake.nix and flake.lock to setup nix environment
+# Install essential packages including opencde.
 cat << FLAKE_NIX_EOF > "$WORKSPACE_DIR/flake.nix"
 {
-  description = "opencode environment";
+  description = "example environment";
 
   inputs = {
     # 使用清华 nixpkgs.git 镜像
@@ -30,19 +30,10 @@ cat << FLAKE_NIX_EOF > "$WORKSPACE_DIR/flake.nix"
           curl
           unzip
           openssl
-          nodejs
-          python3
-          uv
-          opencode
         ];
 
+        # shell commands to run after nix develop.
         shellHook = ''
-          # opencode config directory
-          mkdir -p "\$PWD/.config"
-          export OPENCODE_CONFIG_DIR="\$PWD/.config"
-          # opencode data directory
-	        mkdir -p "\$PWD/.data" "\$HOME/.local/share"
-          ln -sfnT "\$PWD/.data" "\$HOME/.local/share/opencode"
         '';
       };
     };
@@ -77,11 +68,9 @@ cat << FLAKE_LOCK_EOF > "$WORKSPACE_DIR/flake.lock"
 }
 FLAKE_LOCK_EOF
 
-# Write a README
-cat << README_EOF > "$WORKSPACE_DIR/README"
-Run "nix develop" in terminal to build the OpenCode environment
-using Flake (an modern feature of Nix). In the first time
-of building, it will download and compile so many things.
+# Write a readme
+cat << README_EOF > "$WORKSPACE_DIR/readme"
+In the first time of building, it will download and compile so many things.
 Be patient, ladies and gentlemen.
 
 Have fun :)

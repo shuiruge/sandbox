@@ -37,13 +37,13 @@ It writes a `Dockerfile` and an `init.sh` script, which initializes the basic sa
 
 ### Run
 
-To run the Docker image, just execute `run.sh`, as
+To run the Docker image, we refer you to `example.sh`. You can just execute it as
 
 ```sh
 sh run.sh
 ```
 
-It mounts a folder that contains Nix (together with its store and profile) to your Docker image. Also mounted is your workspace folder.
+It mounts a folder that contains Nix (together with its store and profile) to your Docker image. Also mounted is your workspace folder. Or you can create your own shell script for your specific purpose based on `example.sh`. Such scripts are collected in the `examples/` folder.
 
 ## License
 
