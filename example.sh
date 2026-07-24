@@ -8,8 +8,15 @@ source "$DIR/.env"
 # Host directories mounted into container
 mkdir -p "$WORKSPACE_DIR" "$NIX_DIR_HOST"
 
+# Write script that configurates what you want
+# TODO: you can modify this for your purpose.
+cat << INIT_EOF > "$WORKSPACE_DIR/init.sh"
+# remove retired files, including init.sh itself.
+rm flake.nix flake.lock init.sh
+INIT_EOF
+
 # Write flake.nix and flake.lock to setup nix environment
-# Install essential packages including opencde.
+# TODO: what do you want to install?
 cat << FLAKE_NIX_EOF > "$WORKSPACE_DIR/flake.nix"
 {
   description = "example environment";
@@ -67,14 +74,6 @@ cat << FLAKE_LOCK_EOF > "$WORKSPACE_DIR/flake.lock"
   "version": 7
 }
 FLAKE_LOCK_EOF
-
-# Write a readme
-cat << README_EOF > "$WORKSPACE_DIR/readme"
-In the first time of building, it will download and compile so many things.
-Be patient, ladies and gentlemen.
-
-Have fun :)
-README_EOF
 
 # Run docker container
 docker run -it --rm \

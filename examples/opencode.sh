@@ -25,6 +25,8 @@ if [ ! -e "\$PWD/.config/opencode.json" ]; then
 }
 OPENCODE_CONFIG_EOF
 fi
+# remove retired files, including init.sh itself.
+rm flake.nix flake.lock init.sh
 INIT_EOF
 
 # Write flake.nix and flake.lock to setup nix environment
@@ -91,16 +93,6 @@ cat << FLAKE_LOCK_EOF > "$WORKSPACE_DIR/flake.lock"
   "version": 7
 }
 FLAKE_LOCK_EOF
-
-# Write a readme
-cat << README_EOF > "$WORKSPACE_DIR/readme"
-In the first time of building, it will download and compile so many things.
-Be patient, ladies and gentlemen.
-
-Then use opencode-tui to execute opencode in TUI, or opencode-web for web mode.
-
-Have fun :)
-README_EOF
 
 # Run docker container
 docker run -it --rm \
