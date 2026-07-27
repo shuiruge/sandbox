@@ -39,6 +39,13 @@ sh examples/basic.sh
 
 It mounts a folder that contains Nix (together with its store and profile) to your Docker image. Also mounted is your workspace folder. Or you can create your own shell script for your specific purpose based on it. More examples are in the `examples/` folder.
 
+### Examples
+
+In `examples` folder:
+
+- basic.sh: The basic example. You can build your own based on this.
+- opencode.sh: Container with OpenCode (with TUI and web modes) installed.
+
 ## License
 
 GPLv3
