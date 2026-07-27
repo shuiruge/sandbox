@@ -1,5 +1,2 @@
-.env
-Dockerfile
-init.sh
 .nix*
 workspace

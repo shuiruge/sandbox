@@ -19,13 +19,7 @@ git clone https://github.com/shuiruge/sandbox.git
 cd sandbox/
 ```
 
-Then set up your configuration. Copy `.env.example` to `.env`, by
-
-```sh
-cp .env.example .env
-```
-
-and edit the variables listed in `.env` in your favorite text editor. (I like vim/emacs. Yes, both!) We have employed mirror-URLs specifically for Chinese users to speed up the process.
+Then edit the configurations part in `build.sh` in your favorite text editor. (I like vim/emacs. Yes, both!) We have employed mirror-URLs specifically for Chinese users to speed up the process.
 
 Finally, build the Docker image in one go:
 
@@ -33,17 +27,17 @@ Finally, build the Docker image in one go:
 sh build.sh
 ```
 
-It writes a `Dockerfile` and an `init.sh` script, which initializes the basic sandbox environment such as recover the Nix configurations (nix-profile). Then, it builds the Docker image with `docker build` command. Finally, it removes the intermediate artifacts (namely, the `Dockerfile` and `init.sh`) to keep the folder tidy.
+It writes a temporal `Dockerfile` and a temporal `init.sh` script, which initializes the basic sandbox environment such as recover the Nix configurations (nix-profile). Then, it builds the Docker image with `docker build` command.
 
 ### Run
 
-To run the Docker image, we refer you to `example.sh`. You can just execute it as
+To run the Docker image, we refer you to scripts in `examples/`, for example `basic.sh`. You can just execute it as
 
 ```sh
-sh run.sh
+sh examples/basic.sh
 ```
 
-It mounts a folder that contains Nix (together with its store and profile) to your Docker image. Also mounted is your workspace folder. Or you can create your own shell script for your specific purpose based on `example.sh`. Such scripts are collected in the `examples/` folder.
+It mounts a folder that contains Nix (together with its store and profile) to your Docker image. Also mounted is your workspace folder. Or you can create your own shell script for your specific purpose based on it. More examples are in the `examples/` folder.
 
 ## License
 

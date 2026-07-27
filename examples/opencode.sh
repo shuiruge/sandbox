@@ -1,9 +1,21 @@
 #!/usr/bin/env bash
 set -e
 
-# Load .env configuration
-DIR="$(cd "$(dirname "$0")" && pwd)"
-source "$DIR/.env"
+# ------- Configurations -------
+
+# Docker image tag
+IMAGE_NAME=nix-dev:latest
+
+# Workspace mount path
+# TODO: You have to change this for your own.
+WORKSPACE_DIR=$PWD/workspace
+# Host directory for persisting Nix Store
+# TODO: You have to change this for your own.
+NIX_DIR_HOST=$HOME/.nix-store
+# Port on both container and host.
+PORT=3000
+
+# ------- Run Docker Image -------
 
 # Host directories mounted into container
 mkdir -p "$WORKSPACE_DIR" "$NIX_DIR_HOST"
@@ -59,7 +71,7 @@ cat << FLAKE_NIX_EOF > "$WORKSPACE_DIR/flake.nix"
 
         # shell commands to run after nix develop.
         shellHook = ''
-          source init.sh
+          . init.sh
         '';
       };
     };
@@ -96,9 +108,9 @@ FLAKE_LOCK_EOF
 
 # Run docker container
 docker run -it --rm \
-  -v "$NIX_DIR_HOST:$NIX_DIR" \
-  -v "$WORKSPACE_DIR:/home/$DEV_USER/workspace" \
-  -w "/home/$DEV_USER/workspace" \
+  -v "$NIX_DIR_HOST:/nix" \
+  -v "$WORKSPACE_DIR:/home/dev/workspace" \
+  -w "/home/dev/workspace" \
   -p "$PORT:$PORT" \
   "$IMAGE_NAME" \
   nix develop
