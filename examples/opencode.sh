@@ -20,6 +20,19 @@ PORT=3000
 # Host directories mounted into container
 mkdir -p "$WORKSPACE_DIR" "$NIX_DIR_HOST"
 
+# Write AGENTS.md
+cat << AGENTS_EOF > "$WORKSPACE_DIR/AGENTS.md"
+## 约束
+
+- 任何代码删除（包括注释）必须先说明并征得同意，不得擅自删除。
+- 代码要有注释，遵循 Google style guide。在函数体中，给同一功能的代码块添加注释。
+- 禁止使用单字母作为变量名。
+- 在实现一个功能之后要紧跟着做测试。
+- 对话使用中文。要客观，不客套。表达简洁清晰，禁止使用非日常词汇（专业词汇除外），禁止使用比喻。
+- 代码只使用英文。
+- 如果提问以“快问快答”或“快答”开头，那么直接回答不思考。
+AGENTS_EOF
+
 # Write script that configurates opencode
 cat << INIT_EOF > "$WORKSPACE_DIR/init.sh"
 # set opencode config directory
