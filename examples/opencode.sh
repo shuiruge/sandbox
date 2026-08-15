@@ -28,9 +28,9 @@ cat << AGENTS_EOF > "$WORKSPACE_DIR/AGENTS.md"
 - 代码要有注释，遵循 Google style guide。在函数体中，给同一功能的代码块添加注释。
 - 禁止使用单字母作为变量名。
 - 在实现一个功能之后要紧跟着做测试。
-- 对话使用中文。要客观，不客套。表达简洁清晰，禁止使用非日常词汇（专业词汇除外），禁止使用比喻。
-- 代码只使用英文。
-- 如果提问以“快问快答”或“快答”开头，那么直接回答不思考。
+- 使用英文思考，使用中文对话。要客观，不客套。表达简洁清晰，禁止使用非日常词汇（专业词汇除外），禁止使用比喻。
+- 代码只使用英文，包括注释。
+- **在每次输出之前都重读一遍 AGENTS.md，纠正自己的错误，直到完全符合 AGENTS.md 的要求**
 AGENTS_EOF
 
 # Write script that configurates opencode
@@ -46,7 +46,7 @@ alias opencode-web='opencode web --hostname 0.0.0.0 --port $PORT'
 if [ ! -e "\$PWD/.config/opencode.json" ]; then
     cat << OPENCODE_CONFIG_EOF > "\$PWD/.config/opencode.json"
 {
-    "model": "opencode/mimo-v2.5-free"
+    "model": "opencode/deepseek-v4-flash"
 }
 OPENCODE_CONFIG_EOF
 fi
