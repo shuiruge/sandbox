@@ -30,13 +30,11 @@ mkdir -p "\$PWD/.data" "\$HOME/.local/share"
 ln -sfnT "\$PWD/.data" "\$HOME/.local/share/opencode"
 alias opencode-tui='opencode'
 alias opencode-web='opencode web --hostname 0.0.0.0 --port $PORT'
-if [ ! -e "\$PWD/.config/opencode.json" ]; then
-    cat << OPENCODE_CONFIG_EOF > "\$PWD/.config/opencode.json"
+cat << OPENCODE_CONFIG_EOF > "\$PWD/.config/opencode.json"
 {
-    "model": "opencode/deepseek-v4-flash-free"
+    "model": "opencode/mimo-v2.5-free"
 }
 OPENCODE_CONFIG_EOF
-fi
 # remove retired files, including init.sh itself.
 rm flake.nix flake.lock init.sh
 INIT_EOF
@@ -82,11 +80,11 @@ cat << FLAKE_LOCK_EOF > "$WORKSPACE_DIR/flake.lock"
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1782625347,
-        "narHash": "sha256-Jk1bzoynhAdsIzxQH3nqIVnj2X2QcoPDoOclbB8vdY0=",
+        "lastModified": 1789868263,
+        "narHash": "sha256-mdzxWuTl3lPxjj9VN3R/jybOyTfL5BbYbjDUBKRHWs0=",
         "ref": "refs/heads/master",
-        "rev": "126015c9f35181565b8c30c5e220547f3fc056d2",
-        "revCount": 1023778,
+        "rev": "8eba258d9eb6a70558fdaca27c01b66194f856f2",
+        "revCount": 1076849,
         "type": "git",
         "url": "https://mirrors.tuna.tsinghua.edu.cn/git/nixpkgs.git"
       },
