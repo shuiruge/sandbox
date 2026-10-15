@@ -32,7 +32,7 @@ alias opencode-tui='opencode'
 alias opencode-web='opencode web --hostname 0.0.0.0 --port $PORT'
 cat << OPENCODE_CONFIG_EOF > "\$PWD/.config/opencode.json"
 {
-    "model": "opencode/mimo-v2.5-free"
+    "model": "opencode/mimo-v2.6-flash-free"
 }
 OPENCODE_CONFIG_EOF
 # remove retired files, including init.sh itself.
@@ -80,11 +80,11 @@ cat << FLAKE_LOCK_EOF > "$WORKSPACE_DIR/flake.lock"
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1789868263,
-        "narHash": "sha256-mdzxWuTl3lPxjj9VN3R/jybOyTfL5BbYbjDUBKRHWs0=",
+        "lastModified": 1792026476,
+        "narHash": "sha256-QXVn00pJAWjUCdZZ6MnIl0ZEu8Pdo1n9PLxkCowo1Yc=",
         "ref": "refs/heads/master",
-        "rev": "8eba258d9eb6a70558fdaca27c01b66194f856f2",
-        "revCount": 1076849,
+        "rev": "ddc4f6e886bd0718488284afd60098838dcbf4ff",
+        "revCount": 1092823,
         "type": "git",
         "url": "https://mirrors.tuna.tsinghua.edu.cn/git/nixpkgs.git"
       },
