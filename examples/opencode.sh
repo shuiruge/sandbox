@@ -80,11 +80,11 @@ cat << FLAKE_LOCK_EOF > "$WORKSPACE_DIR/flake.lock"
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1792026476,
-        "narHash": "sha256-QXVn00pJAWjUCdZZ6MnIl0ZEu8Pdo1n9PLxkCowo1Yc=",
+        "lastModified": 1793214048,
+        "narHash": "sha256-qRksoDUTJ5DscK08ujfIB3tN6h7uUKO+2O24HKfVCao=",
         "ref": "refs/heads/master",
-        "rev": "ddc4f6e886bd0718488284afd60098838dcbf4ff",
-        "revCount": 1092823,
+        "rev": "2265fce818ce0e4a81aec894c56fa453c00eedb6",
+        "revCount": 1103992,
         "type": "git",
         "url": "https://mirrors.tuna.tsinghua.edu.cn/git/nixpkgs.git"
       },
