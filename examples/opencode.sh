@@ -13,7 +13,7 @@ WORKSPACE_DIR=$PWD/workspace
 # TODO: You have to change this for your own.
 NIX_DIR_HOST=$HOME/.nix-store
 # Port on both container and host.
-PORT=3000
+PORT=3001
 
 # ------- Run Docker Image -------
 
@@ -29,7 +29,7 @@ export OPENCODE_CONFIG_DIR="\$PWD/.config"
 mkdir -p "\$PWD/.data" "\$HOME/.local/share"
 ln -sfnT "\$PWD/.data" "\$HOME/.local/share/opencode"
 alias opencode-tui='opencode'
-alias opencode-web='opencode web --hostname 0.0.0.0 --port $PORT'
+alias opencode-web='opencode serve --hostname 0.0.0.0 --port $PORT'
 cat << OPENCODE_CONFIG_EOF > "\$PWD/.config/opencode.json"
 {
     "model": "opencode/mimo-v2.6-flash-free"
